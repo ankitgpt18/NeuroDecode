@@ -1,60 +1,48 @@
-# NeuroDecode — Brain-Computer Interface
+# NeuroDecode
 
-A professional-grade Brain-Computer Interface (BCI) system that decodes human intent (left fist vs right fist motor imagery) from real EEG brain signals using advanced digital signal processing and machine learning.
+> **Brain-Computer Interface for decoding human intent natively from live EEG brain signals**
 
-## What This Does
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org)
+[![MNE](https://img.shields.io/badge/MNE--Python-1.6-009688)](https://mne.tools/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4-F7931E?logo=scikit-learn)](https://scikit-learn.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.32-FF4B4B?logo=streamlit)](https://streamlit.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 
-When a person imagines moving their left hand, their brain produces a measurable electrical pattern: the **mu rhythm (8-12 Hz)** over the right side of the brain decreases in power. This phenomenon, called **Event-Related Desynchronization (ERD)**, is the mechanism that powers this BCI classifier.
+NeuroDecode is an advanced machine learning pipeline that translates human intent directly from 64-channel EEG recordings in real-time. By tracking sensory rhythms and event-related synchronizations across the motor cortex, it acts as a foundational architecture for controlling physical applications using just thought.
 
-This project implements an end-to-end signal processing and machine learning pipeline to detect and classify these subtle brain patterns from 64-channel EEG recordings in real-time.
+## Tech Stack
 
-## The Technology Stack
+- **Core Signal Processing:** MNE-Python, SciPy (Butterworth Filters, Power Spectral Density)
+- **Machine Learning:** Scikit-Learn (Common Spatial Patterns, Random Forest Classifier)
+- **Mathematical Modeling:** NumPy, PyWavelets (Continuous Wavelet Transforms)
+- **Frontend Dashboard:** Streamlit
+- **Visualization:** Matplotlib
 
-| Concept | Application |
-|---|---|
-| **Common Spatial Pattern (CSP)** | Industry-standard spatial filtering to maximize variance between mental states |
-| **Butterworth IIR Filtering** | Zero-phase bandpass filtering isolating neural frequency bands (δ, θ, α, β, γ) |
-| **Power Spectral Density** | Noise-robust power estimation via windowed periodogram averaging |
-| **Continuous Wavelet Transform** | High-resolution time-frequency analysis using the Morlet wavelet |
-| **Short-Time Fourier Transform** | Spectrogram generation for temporal brain wave dynamics |
-| **Support Vector Machine (SVM)** | High-dimensional classification of spatial features |
+## Quick Start
 
-## Project Structure
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ankitgpt18/NeuroDecode.git
+   cd NeuroDecode
+   ```
 
-```text
-├── main.py                 # Core analysis & training pipeline
-├── data_loader.py          # Data acquisition from PhysioNet
-├── band_filters.py         # IIR digital filter design
-├── spectral_analysis.py    # FFT, PSD, and STFT functionality
-├── wavelet_analysis.py     # CWT with Morlet wavelets
-├── classifier.py           # CSP feature extraction and SVM/LDA models
-├── visualize.py            # Dashboard rendering and data visualization
-├── app.py                  # Streamlit web application frontend
-├── requirements.txt        # Dependencies
-└── output/                 # Pre-computed visualization cache
-```
+2. **Environment Setup**
+   Install the required libraries:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Setup & Run
+3. **Generate Analysis Metrics**
+   Run the backend pipeline to calculate models and export high-resolution dashboard visuals:
+   ```bash
+   python main.py
+   ```
 
-```bash
-# 1. Install dependencies
-pip install -r requirements.txt
+4. **Launch the Dashboard**
+   ```bash
+   streamlit run app.py
+   ```
+   - **App:** http://localhost:8501
 
-# 2. (Optional) Re-train the model and generate figures (~5 minutes)
-python main.py
-
-# 3. Launch the dashboard UI
-streamlit run app.py
-```
-
-## The Neuroscience
-
-Motor imagery activates the exact same neural pathways as actual physical movement. When you imagine clenching your **left** hand:
-1. Mu (8-12 Hz) and Beta (13-30 Hz) power **decreases** over the **right** motor cortex (electrode C4).
-2. By comparing the spatial distribution of this desynchronization across 64 electrodes, the CSP algorithm trains a machine learning classifier to accurately decode the intended movement.
-
-## Data Source
-
-**High-Resolution Cognitive EEG Dataset**
-- Human subjects, 64-channel EEG, 160 Hz sampling rate
-- Validated real-world neural data
+## License
+This project is licensed under the MIT License.
