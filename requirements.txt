@@ -1,0 +1,7 @@
+numpy
+scipy
+matplotlib
+mne
+scikit-learn
+PyWavelets
+streamlit
