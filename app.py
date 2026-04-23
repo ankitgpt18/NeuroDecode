@@ -7,7 +7,7 @@ from PIL import Image
 # APP CONFIGURATION
 # ===================================================================
 st.set_page_config(
-    page_title="NeuroDecode — Brain-Computer Interface",
+    page_title="NeuroDecode - Brain-Computer Interface",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded",
